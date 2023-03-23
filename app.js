@@ -23,6 +23,7 @@ class Library {
   }
 
   addBook() {
+    console.log("test")
     const title = document.getElementById("title");
     const author = document.getElementById("author");
     const read = document.getElementById("read");
@@ -32,9 +33,18 @@ class Library {
     const tbody = document.getElementById("tableBody");
     const newTr = document.createElement("tr");
     const newTitle = document.createElement("td");
+    newTitle.textContent = title.value;
     const newAuthor = document.createElement("td");
+    newAuthor.textContent = author.value;
     const newRead = document.createElement("td");
-
+    let newReadCheckbox = document.createElement("input");
+    newReadCheckbox.type = "checkbox";
+    newReadCheckbox.checked = read.checked;
+    newReadCheckbox.addEventListener("click", function(){
+      newReadCheckbox.disabled = true
+    })
+    
+    newRead.append(newReadCheckbox);
     newTr.append(newTitle, newAuthor, newRead);
 
     tbody.appendChild(newTr);
@@ -59,5 +69,3 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   library.addBook();
 });
-
-console.log(addBook());
